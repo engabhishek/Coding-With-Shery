@@ -168,13 +168,26 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
       <div className="my-10 mx-8">
         <hr />
       </div>
+
       <p className="text-sm text-gray-300 text-center font-semibold py-4">
         © {new Date().getFullYear()} Sheryians{" "}
         <span className="text-red-500">Coding</span> School. <br /> All rights
         reserved.
+      </p>
+
+      <p className="text-sm pt-8 text-gray-400 text-center">
+        Website designed and developed by {" "}
+        <a
+          href="https://engabhishek.github.io/portfolio2/"
+          target="_blank"
+          className="underline underline-offset-4 cursor-pointer pl-2 text-red-200 hover:text-red-300 hover:scale-x-105 font-semibold"
+        >
+         Abhishek Sharma
+        </a>
       </p>
     </footer>
   );
