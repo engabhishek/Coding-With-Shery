@@ -8,7 +8,7 @@ const CoursesOffered = () => {
       ActualPrice: "11999",
       CurrentPrice: "5999",
       Discount: "50%",
-      url: "public\\Assets\\job-ready.webp",
+      url: "public\\Assets\\job-ready.png",
       sale: "Limited Time Discount",
       batchType: "LIVE BATCH",
       courseUrl:"/courses"
@@ -18,7 +18,7 @@ const CoursesOffered = () => {
       ActualPrice: "7500",
       CurrentPrice: "6600",
       Discount: "12%",
-      url: "public\\Assets\\dsa-domination-cohort.webp",
+      url: "public\\Assets\\dsa-domination-cohort.png",
       sale: "Limited Time Discount",
       batchType: "LIVE BATCH",
       courseUrl:"https://sheryians.com/courses/courses-details/DSA%20Domination%20Cohort"
@@ -28,7 +28,7 @@ const CoursesOffered = () => {
       ActualPrice: "11999",
       CurrentPrice: "5999",
       Discount: "50%",
-      url: "public\\Assets\\job-ready.webp",
+      url: "public\\Assets\\job-ready.png",
       sale: "Limited Time Discount",
       batchType: "LIVE BATCH",
       courseUrl:"https://sheryians.com/courses/courses-details/Job%20Ready%20AI%20Powered%20Cohort:%20Web%20+%20DSA%20+%20Aptitude"
@@ -38,7 +38,7 @@ const CoursesOffered = () => {
       ActualPrice: "3500",
       CurrentPrice: "2499",
       Discount: "29%",
-      url: "public\\Assets\\threeJs.webp",
+      url: "public\\Assets\\threeJs.png",
       sale: "Black Friday sale",
       batchType: "LIVE BATCH",
       courseUrl:"https://sheryians.com/courses/courses-details/Three.js%20Domination"
@@ -48,7 +48,7 @@ const CoursesOffered = () => {
       ActualPrice: "3500",
       CurrentPrice: "2499",
       Discount: "29%",
-      url: "public\\Assets\\aptitude-reasoning.webp",
+      url: "public\\Assets\\aptitude-reasoning.png",
       sale: "Black Friday sale",
       courseUrl:"https://sheryians.com/courses/courses-details/Aptitude%20&%20Reasoning%20for%20Campus%20Placements"
     },
@@ -57,7 +57,7 @@ const CoursesOffered = () => {
       ActualPrice: "9999",
       CurrentPrice: "3999",
       Discount: "40%",
-      url: "public\\Assets\\frontend-domination.webp",
+      url: "public\\Assets\\frontend-domination.png",
       sale: "Limited Time Discount",
       courseUrl:"https://sheryians.com/courses/courses-details/Front-End%20Domination:%20Create%20Anything%20with%20Code"
     },
