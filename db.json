@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "FepsdwGsoDdfNPvgsVKHA",
+      "firstName": "abhishes",
+      "lastName": "hsh",
+      "email": "jsjsj@gsgds",
+      "country": "US",
+      "phone": "76476474463",
+      "password": "12123"
+    },
+    {
+      "id": "cvjte2noLRajGkOEbcUqZ",
+      "firstName": "Abhishek",
+      "lastName": "Sharma",
+      "email": "ggsg2hgs@gaga",
+      "country": "US",
+      "phone": "6353",
+      "password": "12123"
+    },
+    {
+      "id": "Jhf1FD5f3CNWwS96h1Klw",
+      "firstName": "jjdhjjsh",
+      "lastName": "ggdhd",
+      "email": "agag@gsshsh",
+      "country": "US",
+      "phone": "74646",
+      "password": "12123"
+    },
+    {
+      "id": "rHB237U4Dit-VY70dluor",
+      "firstName": "Himanshu",
+      "lastName": "pandit",
+      "email": "himanshupandit8865@gmail.com",
+      "country": "US",
+      "phone": "8865085054",
+      "password": "Hima@2006"
+    }
+  ]
+}

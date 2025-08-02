@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncLogOutUser } from "../store/actions/userAction";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +11,7 @@ const NavBar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const navRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,13 +58,22 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const user = useSelector((state) => state.userReducer.users);
+
+  const initial = user
+    ? user.firstName?.charAt(0).toUpperCase() ||
+      user.email?.charAt(0).toUpperCase()
+    : "";
+
   return (
     <>
       <nav
         ref={navRef}
         className={`w-full px-6 bg-black/60 backdrop-blur-lg text-white shadow-md z-50 fixed top-0 left-0 transition-all duration-700 ease-out ${
           showNavbar ? "translate-y-0" : "-translate-y-full"
-        } ${isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
+        } ${
+          isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+        }`}
       >
         <div className="flex justify-between items-center font-mono">
           <NavLink to="/" className="flex items-center gap-2 z-50">
@@ -116,11 +128,19 @@ const NavBar = () => {
             >
               Request Callback
             </NavLink>
-            <NavLink to="/login">
-              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm text-white transition">
-                Sign In
-              </button>
-            </NavLink>
+            {user ? (
+              <NavLink to="/profile">
+                <div className="w-20 h-20 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold text-9xl transition">
+                  {initial}
+                </div>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">
+                <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm text-white transition">
+                  Sign In
+                </button>
+              </NavLink>
+            )}
           </ul>
 
           <button onClick={toggleMenu} className="md:hidden z-50">
@@ -180,19 +200,35 @@ const NavBar = () => {
               >
                 Request Callback
               </NavLink>
-              <NavLink
-                to="/login"
-                onClick={handleClose}
-                className="mt-6 opacity-0 animate-fadeInUp"
-                style={{
-                  animationDelay: "0.8s",
-                  animationFillMode: "forwards",
-                }}
-              >
-                <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white transition">
-                  Sign In
-                </button>
-              </NavLink>
+              {user ? (
+                <NavLink
+                  to="/profile"
+                  onClick={handleClose}
+                  className="mt-6 opacity-0 animate-fadeInUp"
+                  style={{
+                    animationDelay: "0.8s",
+                    animationFillMode: "forwards",
+                  }}
+                >
+                  <div className="w-20 h-20 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold text-9xl transition">
+                    {initial}
+                  </div>
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/login"
+                  onClick={handleClose}
+                  className="mt-6 opacity-0 animate-fadeInUp"
+                  style={{
+                    animationDelay: "0.8s",
+                    animationFillMode: "forwards",
+                  }}
+                >
+                  <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white transition">
+                    Sign In
+                  </button>
+                </NavLink>
+              )}
             </ul>
           </div>
         )}

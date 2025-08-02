@@ -1,9 +1,16 @@
+import { SignatureIcon } from "lucide-react";
+import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { asyncLoginUser, asyncRegisterUser } from "../store/actions/userAction";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
   const [mode, setMode] = useState("signup");
   const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -12,11 +19,16 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (user) => {
     if (mode === "signup") {
-      console.log("Creating account with:", data);
+      console.log("Creating account with:", user);
+      user.id = nanoid();
+      dispatch(asyncRegisterUser(user));
+      setMode("signin")
     } else {
-      console.log("Signing in with:", data);
+      dispatch(asyncLoginUser(user))
+      console.log("Signing in with:", user);
+      navigate("/")
     }
     reset();
   };
@@ -44,7 +56,6 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black bg-opacity-45 pt-20 px-4">
       <div className="w-full flex flex-col md:flex-row bg-transparent rounded-2xl  overflow-hidden">
-        {/* Left Section */}
         <div className="w-full lg:w-1/2 bg-transparent bg-opacity-40 pt-36 flex flex-col justify-center items-center text-center">
           <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold mb-4">
             Welcome to <br /> Sheryians{" "}
@@ -60,10 +71,8 @@ const LoginPage = () => {
           />
         </div>
 
-        {/* Right Section */}
         <div className="w-full lg:w-1/2 flex items-center justify-center bg-cover bg-center relative rounded-2xl">
           <div className="w-full max-w-md bg-[#1c1c1c]  bg-opacity-30 backdrop-blur-lg rounded-2xl p-6 text-white shadow-xl">
-            {/* Mode Toggle */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex bg-black p-1 rounded-full w-max">
                 <button
@@ -93,7 +102,6 @@ const LoginPage = () => {
               {mode === "signup" ? "Create an account" : "Welcome back"}
             </h2>
 
-            {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {mode === "signup" && (
                 <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
@@ -121,7 +129,11 @@ const LoginPage = () => {
                   className="bg-transparent w-full focus:outline-none text-white placeholder-gray-400"
                 />
               </div>
-
+              {mode === "signin" && (
+                <div className="text-center bg-[#1e1e1e] text-gray-400 font-bold rounded-3xl ">
+                  Or
+                </div>
+              )}
               <div className="flex items-center bg-[#1e1e1e] rounded-md px-4 py-1 space-x-3">
                 <div className="relative">
                   <select
@@ -147,8 +159,6 @@ const LoginPage = () => {
                   className="bg-transparent w-full focus:outline-none text-white placeholder-gray-400 text-sm"
                 />
               </div>
-
-              {mode === "signin" && (
                 <div className="flex items-center bg-[#1e1e1e] rounded-md px-4 py-2">
                   <span className="text-gray-400 mr-2">🔒</span>
                   <input
@@ -158,13 +168,13 @@ const LoginPage = () => {
                     className="bg-transparent w-full focus:outline-none text-white placeholder-gray-400"
                   />
                 </div>
-              )}
+              
 
               <button
-                type="submit"
+                type="sumbit"
                 className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-100 transition"
               >
-                {mode === "signup" ? "Create an account" : "Sign in"}
+                {mode === "signup" ? "Create an account" : "SignIn"}
               </button>
             </form>
 
